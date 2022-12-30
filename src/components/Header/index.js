@@ -1,3 +1,7 @@
+import {FaHome} from 'react-icons/fa'
+import {IoBriefcase} from 'react-icons/io5'
+import {FiLogOut} from 'react-icons/fi'
+
 import './index.css'
 
 const Header = () => (
@@ -15,6 +19,17 @@ const Header = () => (
       <button className="logout-button-desktop" type="button">
         Logout
       </button>
+      <ul className="menu-options-and-logout-icon-container">
+        <li>
+          <FaHome size={26} color="#ffffff" />
+        </li>
+        <li>
+          <IoBriefcase size={26} color="#ffffff" />
+        </li>
+        <li>
+          <FiLogOut size={26} color="#ffffff" />
+        </li>
+      </ul>
     </div>
   </nav>
 )

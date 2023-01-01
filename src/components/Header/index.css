@@ -56,6 +56,13 @@
 .menu-options-and-logout-icon-container {
   display: none;
 }
+.logout-button-mobile {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 
 @media (max-width: 767px) {
   .nav-bar-content-container {

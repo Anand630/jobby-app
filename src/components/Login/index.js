@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import Cookies from 'js-cookie'
 import './index.css'
 
 class Login extends Component {
@@ -12,8 +13,24 @@ class Login extends Component {
     this.setState({password: e.target.value})
   }
 
-  submitForm = e => {
+  submitForm = async e => {
+    const {username, password} = this.state
     e.preventDefault()
+    const userDetails = {username, password}
+    const apiUrl = 'https://apis.ccbp.in/login'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(userDetails),
+    }
+    const response = await fetch(apiUrl, options)
+    const data = await response.json()
+    console.log(response)
+    console.log(data)
+    if (response.ok) {
+      const {history} = this.props
+      Cookies.set('jwt_token', data.jwt_token, {expires: 15})
+      history.replace('/')
+    }
   }
 
   render() {

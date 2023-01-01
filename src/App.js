@@ -1,6 +1,9 @@
-import {Switch} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import Login from './components/Login'
 import Header from './components/Header'
+import Home from './components/Home'
+import Jobs from './components/Jobs'
+
 import './App.css'
 
 // These are the lists used in the application. You can move them to any component needed.
@@ -45,7 +48,9 @@ const salaryRangesList = [
 // Replace your code here
 const App = () => (
   <Switch>
-    <Header />
+    <Route exact path="/" component={Home} />
+    <Route exact path="/login" component={Login} />
+    <Route exact path="/jobs" component={Jobs} />
   </Switch>
 )
 

@@ -1,0 +1,13 @@
+.job-details-bg-container {
+  background-color: #000000;
+  min-height: 100vh;
+}
+
+.job-details-bottom-container {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.job-details-container {
+  color: aliceblue;
+}

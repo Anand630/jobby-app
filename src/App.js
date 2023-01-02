@@ -1,8 +1,8 @@
 import {Switch, Route} from 'react-router-dom'
 import Login from './components/Login'
-import Header from './components/Header'
 import Home from './components/Home'
 import Jobs from './components/Jobs'
+import JobItemDetails from './components/JobItemDetails'
 
 import './App.css'
 
@@ -51,6 +51,7 @@ const App = () => (
     <Route exact path="/" component={Home} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/jobs" component={Jobs} />
+    <Route exact path="/jobs/job-item-details/:id" component={JobItemDetails} />
   </Switch>
 )
 

@@ -39,6 +39,11 @@
   font-weight: 500;
 }
 
+.nav-link-item {
+  text-decoration: none;
+  color: #f8fafc;
+}
+
 .logout-button-desktop {
   padding: 8px 0;
   width: 120px;

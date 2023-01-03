@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 import {FaHome} from 'react-icons/fa'
 import {IoBriefcase} from 'react-icons/io5'
@@ -8,9 +8,11 @@ import Cookies from 'js-cookie'
 
 import './index.css'
 
-const Header = () => {
+const Header = props => {
   const onClickLogout = () => {
+    const {history} = props
     Cookies.remove('jwt_token')
+    history.replace('/login')
   }
 
   return (
@@ -69,4 +71,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default withRouter(Header)

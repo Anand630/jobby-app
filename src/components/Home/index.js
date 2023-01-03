@@ -7,11 +7,13 @@ const Home = props => {
   if (Cookies.get('jwt_token') === undefined) {
     return <Redirect to="/login" />
   }
+
   const {history} = props
 
   const displayJobsPage = () => {
     history.push('/jobs')
   }
+
   return (
     <div className="home-page-container">
       <Header />

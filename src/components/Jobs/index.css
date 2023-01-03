@@ -123,6 +123,7 @@
 hr {
   border: 1px solid #b6c5ff;
   opacity: 0.6;
+  text-decoration: none;
 }
 
 .all-job-cards-container {

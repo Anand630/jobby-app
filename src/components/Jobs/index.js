@@ -149,7 +149,8 @@ class Jobs extends Component {
     this.setState({minimumPackage: e.target.value})
   }
 
-  searchData = () => {
+  searchData = e => {
+    e.preventDefault()
     this.getAllJobsDetails()
   }
 
@@ -162,7 +163,7 @@ class Jobs extends Component {
         <Header />
         <div className="jobs-page-bottom-container">
           <div className="profile-and-filters-container">
-            <div className="search-input-and-icon-container-mobile">
+            <form className="search-input-and-icon-container-mobile">
               <input
                 className="search-input"
                 type="search"
@@ -171,11 +172,15 @@ class Jobs extends Component {
                 value={searchInput}
               />
               <div className="search-icon-container">
-                <button className="search-icon-button" type="button">
+                <button
+                  className="search-icon-button"
+                  type="submit"
+                  onClick={this.searchData}
+                >
                   <BsSearch size={18} color="#ffffff" className="search-icon" />
                 </button>
               </div>
-            </div>
+            </form>
             <div className="profile-container">
               <img className="profile-pic" alt={name} src={profileImageUrl} />
               <h1 className="profile-name">{name}</h1>
@@ -234,7 +239,7 @@ class Jobs extends Component {
             </ul>
           </div>
           <div className="all-job-cards-container">
-            <div className="search-input-and-icon-container-desktop">
+            <form className="search-input-and-icon-container-desktop">
               <input
                 className="search-input"
                 type="search"
@@ -246,12 +251,12 @@ class Jobs extends Component {
                 <button
                   onClick={this.searchData}
                   className="search-icon-button"
-                  type="button"
+                  type="submit"
                 >
                   <BsSearch size={18} color="#ffffff" className="search-icon" />
                 </button>
               </div>
-            </div>
+            </form>
             {/* JobDetailsItems   */}
             <ul className="all-job-items-container">
               {jobs.map(eachJob => (

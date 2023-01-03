@@ -69,6 +69,12 @@
   margin-left: auto;
 }
 
+hr {
+  border: 1px solid #b6c5ff;
+  opacity: 0.6;
+  text-decoration: none;
+}
+
 .job-description-heading-text {
   color: #ffffff;
   font-weight: 500;

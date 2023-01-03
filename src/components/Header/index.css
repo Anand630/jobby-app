@@ -14,6 +14,7 @@
 
 .nav-bar-logo {
   width: 130px;
+  outline: none;
 }
 
 .menu-options-desktop-container {
@@ -42,6 +43,7 @@
 .nav-link-item {
   text-decoration: none;
   color: #f8fafc;
+  outline: none;
 }
 
 .logout-button-desktop {
@@ -81,6 +83,7 @@
 
   .nav-bar-logo {
     width: 100px;
+    outline: none;
   }
 
   .menu-options-desktop-container {

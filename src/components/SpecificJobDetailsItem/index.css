@@ -1,0 +1,205 @@
+.specific-job-details-card {
+  background-color: #272727;
+
+  padding: 30px 35px;
+  border-radius: 13px;
+}
+
+.specific-job-company-logo-job-role-rating-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.specific-job-company-logo {
+  margin-top: 20px;
+  margin-right: 15px;
+  width: 55px;
+}
+
+.specific-job-role-and-rating-container {
+}
+
+.specific-job-role-title {
+  color: #ffffff;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.specific-job-star-icon-and-rating-container {
+  align-items: center;
+  display: flex;
+}
+
+.specific-job-rating {
+  margin-left: 5px;
+
+  color: #ffffff;
+  font-family: Roboto;
+  font-weight: 500;
+}
+
+.specific-job-location-job-type-package-container {
+  display: flex;
+  align-items: center;
+}
+
+.specific-job-icon-and-text-container {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.specific-job-location-emp-type-text {
+  color: #f8fafc;
+  font-family: Roboto;
+  margin-left: 10px;
+}
+
+@media (max-width: 767px) {
+  .specific-job-location-emp-type-text {
+    margin-left: 5px;
+    font-size: 14px;
+  }
+}
+
+.specific-job-package-per-annum {
+  color: #f8fafc;
+  font-family: Roboto;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+@media (max-width: 767px) {
+  .specific-job-package-per-annum {
+    font-size: 14px;
+  }
+}
+
+hr {
+  border: 1px solid #b6c5ff;
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+.specific-job-headings-text {
+  color: #ffffff;
+  font-weight: 500;
+  font-family: Roboto;
+  font-size: 26px;
+}
+
+@media (max-width: 767px) {
+  .specific-job-headings-text {
+    font-size: 20px;
+  }
+}
+
+.specific-job-description {
+  color: #f8fafc;
+  font-size: 20px;
+
+  font-family: Roboto;
+  line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+  .specific-job-description {
+    font-size: 16px;
+  }
+}
+
+.skills-required-container {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.each-skill-item-container {
+  display: flex;
+  align-items: center;
+  flex-basis: 31%;
+  margin-bottom: 30px;
+  margin-right: 10px;
+}
+
+@media (max-width: 575px) {
+  .each-skill-item-container {
+    display: flex;
+    align-items: center;
+    flex-basis: 45%;
+    margin-bottom: 30px;
+    margin-right: 10px;
+  }
+}
+
+.skill-logo {
+  width: 50px;
+  margin-right: 15px;
+}
+@media (max-width: 767px) {
+  .skill-logo {
+    width: 35px;
+    margin-right: 10px;
+  }
+}
+
+.skill-name {
+  color: #f8fafc;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  .skill-name {
+    font-size: 14px;
+  }
+}
+
+.life-at-company-description-and-image-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.life-at-company-description {
+  color: #f8fafc;
+  font-size: 20px;
+
+  font-family: Roboto;
+  line-height: 1.6;
+  margin-top: 0;
+  width: 70%;
+  padding-right: 10px;
+}
+
+.life-at-company-image {
+  height: 200px;
+  width: 280px;
+}
+
+@media (max-width: 767px) {
+  .life-at-company-description-and-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .life-at-company-description {
+    color: #f8fafc;
+    font-size: 16px;
+
+    font-family: Roboto;
+    line-height: 1.6;
+    margin-top: 0;
+    width: 100% !important;
+    padding-right: 0;
+  }
+
+  .life-at-company-image {
+    /* height: 200px;
+  width: 280px; */
+    height: auto;
+    width: auto;
+  }
+}

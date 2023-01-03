@@ -31,6 +31,11 @@
   margin-bottom: 30px;
 }
 
+.link-button {
+  text-decoration: none;
+  color: #f8fafc;
+}
+
 .find-jobs-button {
   padding: 8px 0;
   width: 120px;
@@ -41,7 +46,7 @@
   font-weight: 400;
   border-radius: 10px;
   outline: none;
-  cursor: pointer;
+
   border: none;
 }
 

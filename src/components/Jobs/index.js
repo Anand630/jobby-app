@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {BsSearch} from 'react-icons/bs'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 import JobItem from '../JobItem'
@@ -45,6 +46,14 @@ const salaryRangesList = [
   },
 ]
 
+const apiConstants = {
+  initial: 'INITIAL',
+  inProgress: 'IN_PROGRESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  noJobsFound: 'NO_JOBS_FOUND',
+}
+
 class Jobs extends Component {
   state = {
     profileDetails: {},
@@ -52,6 +61,8 @@ class Jobs extends Component {
     minimumPackage: '',
     searchInput: '',
     jobs: [],
+    profileApi: apiConstants.initial,
+    jobsApi: apiConstants.initial,
   }
 
   componentDidMount() {
@@ -71,7 +82,8 @@ class Jobs extends Component {
   })
 
   getAllJobsDetails = async () => {
-    const {employmentType, minimumPackage, searchInput, jobs} = this.state
+    this.setState({jobsApi: apiConstants.inProgress})
+    const {employmentType, minimumPackage, searchInput} = this.state
     const empTypeString = employmentType.join(',')
     console.log(`emp string ${empTypeString}`)
     const jobsDetailsApiUrl = `https://apis.ccbp.in/jobs?employment_type=${empTypeString}&minimum_package=${minimumPackage}&search=${searchInput}`
@@ -85,11 +97,17 @@ class Jobs extends Component {
     const response = await fetch(jobsDetailsApiUrl, options)
     const jobsData = await response.json()
     console.log(jobsData)
-    const formattedJobData = jobsData.jobs.map(eachJob =>
-      this.getFormattedJobData(eachJob),
-    )
-    console.log(formattedJobData)
-    this.setState({jobs: formattedJobData})
+    if (response.ok && jobsData.jobs.length > 0) {
+      const formattedJobData = jobsData.jobs.map(eachJob =>
+        this.getFormattedJobData(eachJob),
+      )
+      console.log(formattedJobData)
+      this.setState({jobs: formattedJobData, jobsApi: apiConstants.success})
+    } else if (response.ok && jobsData.jobs.length === 0) {
+      this.setState({jobsApi: apiConstants.noJobsFound})
+    } else if (!response.ok) {
+      this.setState({jobsApi: apiConstants.failure})
+    }
   }
 
   getFormattedData = profileDetails => ({
@@ -99,9 +117,10 @@ class Jobs extends Component {
   })
 
   getProfileDetails = async () => {
+    this.setState({profileApi: apiConstants.inProgress})
     const profileDetailsApiUrl = 'https://apis.ccbp.in/profile'
     const jwtToken = Cookies.get('jwt_token')
-    console.log(typeof jwtToken)
+
     const options = {
       method: 'GET',
       headers: {
@@ -110,9 +129,16 @@ class Jobs extends Component {
     }
     const response = await fetch(profileDetailsApiUrl, options)
     const profileData = await response.json()
-    console.log(profileData)
-    const formattedData = this.getFormattedData(profileData.profile_details)
-    this.setState({profileDetails: formattedData})
+    if (response.ok) {
+      console.log(profileData)
+      const formattedData = this.getFormattedData(profileData.profile_details)
+      this.setState({
+        profileDetails: formattedData,
+        profileApi: apiConstants.success,
+      })
+    } else if (!response.ok) {
+      this.setState({profileApi: apiConstants.failure})
+    }
   }
 
   storeInputText = e => {
@@ -154,10 +180,135 @@ class Jobs extends Component {
     this.getAllJobsDetails()
   }
 
-  render() {
-    const {profileDetails, jobs, searchInput} = this.state
-    console.log(this.state)
+  profileSuccessView = () => {
+    const {profileDetails} = this.state
     const {name, profileImageUrl, shortBio} = profileDetails
+    return (
+      <div className="profile-container">
+        <img className="profile-pic" alt="profile" src={profileImageUrl} />
+        <h1 className="profile-name">{name}</h1>
+        <p className="job-role">{shortBio}</p>
+      </div>
+    )
+  }
+
+  // testid="loader"
+
+  profileLoadingView = () => (
+    <div className="profile-loader-container loader-container" testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
+
+  refetchProfileData = () => {
+    this.getProfileDetails()
+  }
+
+  profileFailureView = () => (
+    <div className="profile-failure-container">
+      <button
+        onClick={this.refetchProfileData}
+        className="retry-button"
+        type="button"
+      >
+        Retry
+      </button>
+    </div>
+  )
+
+  displayProfileApiResult = () => {
+    const {profileApi} = this.state
+    switch (profileApi) {
+      case apiConstants.inProgress:
+        return this.profileLoadingView()
+      case apiConstants.success:
+        return this.profileSuccessView()
+      case apiConstants.failure:
+        return this.profileFailureView()
+      default:
+        return null
+    }
+  }
+
+  jobsLoadingView = () => (
+    <div
+      className="jobs-loading-view-container loader-container "
+      testid="loader"
+    >
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
+
+  jobsSuccessView = () => {
+    const {jobs} = this.state
+    return (
+      <ul className="all-job-items-list-container">
+        {jobs.map(eachJob => (
+          <JobItem jobDetails={eachJob} key={eachJob.id} />
+        ))}
+      </ul>
+    )
+  }
+
+  refetchJobsData = () => {
+    this.getAllJobsDetails()
+  }
+
+  jobsFailureView = () => (
+    <div className="jobs-failure-view-container">
+      <img
+        className="failure-image"
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failure view"
+      />
+      <h1 className="failure-heading">Oops! Something Went Wrong</h1>
+      <p className="failure-description">
+        We cannot seem to find the page you are looking for.
+      </p>
+      <button
+        onClick={this.refetchJobsData}
+        type="button"
+        className="retry-button"
+      >
+        Retry
+      </button>
+    </div>
+  )
+
+  noJobsFoundView = () => (
+    <div className="no-jobs-view-container">
+      <img
+        className="no-jobs-image"
+        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        alt="no jobs"
+      />
+      <h1 className="no-jobs-heading">No Jobs Found</h1>
+      <p className="no-jobs-description">
+        We could not find any jobs. Try other filters.
+      </p>
+    </div>
+  )
+
+  getJobApiResults = () => {
+    const {jobsApi} = this.state
+    switch (jobsApi) {
+      case apiConstants.inProgress:
+        return this.jobsLoadingView()
+      case apiConstants.success:
+        return this.jobsSuccessView()
+      case apiConstants.failure:
+        return this.jobsFailureView()
+      case apiConstants.noJobsFound:
+        return this.noJobsFoundView()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    const {searchInput} = this.state
+
+    // const {name, profileImageUrl, shortBio} = profileDetails
     return (
       <div className="jobs-page-container">
         <Header />
@@ -176,18 +327,15 @@ class Jobs extends Component {
                   className="search-icon-button"
                   type="submit"
                   onClick={this.searchData}
+                  testid="searchButton"
                 >
                   <BsSearch size={18} color="#ffffff" className="search-icon" />
                 </button>
               </div>
             </form>
-            <div className="profile-container">
-              <img className="profile-pic" alt={name} src={profileImageUrl} />
-              <h1 className="profile-name">{name}</h1>
-              <p className="job-role">{shortBio}</p>
-            </div>
+            {this.displayProfileApiResult()}
             <hr />
-            <p className="filter-type">Type of Employment</p>
+            <h1 className="filter-type">Type of Employment</h1>
             {/*   employment types    */}
             <ul className="employment-types-list-container">
               {employmentTypesList.map(eachType => (
@@ -212,7 +360,7 @@ class Jobs extends Component {
               ))}
             </ul>
             <hr />
-            <p className="filter-type">Salary Range</p>
+            <h1 className="filter-type">Salary Range</h1>
             {/*   salary ranges   */}
             <ul className="salary-ranges-list-container">
               {salaryRangesList.map(eachSalRange => (
@@ -252,17 +400,14 @@ class Jobs extends Component {
                   onClick={this.searchData}
                   className="search-icon-button"
                   type="submit"
+                  testid="searchButton"
                 >
                   <BsSearch size={18} color="#ffffff" className="search-icon" />
                 </button>
               </div>
             </form>
             {/* JobDetailsItems   */}
-            <ul className="all-job-items-container">
-              {jobs.map(eachJob => (
-                <JobItem jobDetails={eachJob} key={eachJob.id} />
-              ))}
-            </ul>
+            {this.getJobApiResults()}
           </div>
         </div>
       </div>

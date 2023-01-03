@@ -69,6 +69,7 @@
   font-family: Roboto;
   font-weight: 500;
   margin-left: auto;
+  font-size: 18px;
 }
 
 @media (max-width: 767px) {
@@ -83,11 +84,31 @@ hr {
   text-decoration: none;
 }
 
+.description-heading-visit-text-icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .specific-job-headings-text {
   color: #ffffff;
   font-weight: 500;
   font-family: Roboto;
   font-size: 26px;
+}
+
+.visit-text-icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 62px;
+}
+
+.visit-text {
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 @media (max-width: 767px) {

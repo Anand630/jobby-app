@@ -1,6 +1,7 @@
 import {FaStar} from 'react-icons/fa'
 import {IoBriefcase} from 'react-icons/io5'
 import {MdLocationOn} from 'react-icons/md'
+import {FiExternalLink} from 'react-icons/fi'
 import './index.css'
 
 const SpecificJobDetailsItem = props => {
@@ -9,7 +10,7 @@ const SpecificJobDetailsItem = props => {
     companyLogoUrl,
     companyWebsiteUrl,
     employmentType,
-    id,
+
     jobDescription,
 
     location,
@@ -27,7 +28,7 @@ const SpecificJobDetailsItem = props => {
         <img
           className="specific-job-company-logo"
           src={companyLogoUrl}
-          alt="company logo"
+          alt="job details company logo"
         />
         <div className="specific-job-role-and-rating-container">
           <h3 className="specific-job-role-title">{title}</h3>
@@ -48,10 +49,20 @@ const SpecificJobDetailsItem = props => {
             {employmentType}
           </p>
         </div>
-        <h3 className="specific-job-package-per-annum">{packagePerAnnum}</h3>
+        <p className="specific-job-package-per-annum">{packagePerAnnum}</p>
       </div>
       <hr />
-      <h3 className="specific-job-headings-text">Description</h3>
+      <div className="description-heading-visit-text-icon-container">
+        <h3 className="specific-job-headings-text">Description</h3>
+
+        <a
+          href={companyWebsiteUrl}
+          className="visit-text visit-text-icon-container"
+        >
+          Visit
+          <FiExternalLink color="#6366f1" size={19} />
+        </a>
+      </div>
       <p className="specific-job-description">{jobDescription}</p>
       <h3 className="specific-job-headings-text">Skills</h3>
       <ul className="skills-required-container">
@@ -80,18 +91,3 @@ const SpecificJobDetailsItem = props => {
 }
 
 export default SpecificJobDetailsItem
-
-// {
-//   /* <ul className="skills-required-container">
-//         {skills.map(eachSkill => (
-//           <li className="each-skill-container" key={eachSkill.name}>
-//             <img
-//               className="skill-logo"
-//               src={eachSkill.imageUrl}
-//               alt={eachSkill.name}
-//             />
-//             <h4 className="skill-name">{eachSkill.name}</h4>
-//           </li>
-//         ))}
-//       </ul> */
-// }

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import './index.css'
 
 class Login extends Component {
-  state = {username: '', password: ''}
+  state = {username: '', password: '', loginError: false, errorMessage: ''}
 
   onUsernameInputChange = e => {
     this.setState({username: e.target.value})
@@ -25,16 +25,19 @@ class Login extends Component {
     const response = await fetch(apiUrl, options)
     const data = await response.json()
     console.log(response)
-    console.log(data)
+
     if (response.ok) {
       const {history} = this.props
       Cookies.set('jwt_token', data.jwt_token, {expires: 15})
       history.replace('/')
+    } else if (!response.ok) {
+      console.log(data)
+      this.setState({loginError: true, errorMessage: data.error_msg})
     }
   }
 
   render() {
-    const {username, password} = this.state
+    const {username, password, loginError, errorMessage} = this.state
     console.log(this.state)
     return (
       <div className="login-page-container">
@@ -78,6 +81,7 @@ class Login extends Component {
             >
               Login
             </button>
+            {loginError && <p className="error-message">*{errorMessage}</p>}
           </div>
         </form>
       </div>

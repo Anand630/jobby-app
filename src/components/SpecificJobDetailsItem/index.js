@@ -57,7 +57,7 @@ const SpecificJobDetailsItem = props => {
 
         <a href={companyWebsiteUrl} className="visit-text-icon-container">
           Visit
-          <FiExternalLink color="#6366f1" size={19} />
+          {/* <FiExternalLink color="#6366f1" size={19} /> */}
         </a>
       </div>
       <p className="specific-job-description">{jobDescription}</p>

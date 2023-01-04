@@ -1,16 +1,11 @@
-import Cookies from 'js-cookie'
-import {Redirect, Link} from 'react-router-dom'
+// import Cookies from 'js-cookie'
+import {Link} from 'react-router-dom'
 import Header from '../Header'
 import './index.css'
 
 const Home = props => {
-  if (Cookies.get('jwt_token') === undefined) {
-    return <Redirect to="/login" />
-  }
-
-  const {history} = props
-
   const displayJobsPage = () => {
+    const {history} = props
     history.push('/jobs')
   }
 

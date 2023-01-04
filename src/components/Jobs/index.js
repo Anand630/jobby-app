@@ -85,7 +85,7 @@ class Jobs extends Component {
     this.setState({jobsApi: apiConstants.inProgress})
     const {employmentType, minimumPackage, searchInput} = this.state
     const empTypeString = employmentType.join(',')
-    console.log(`emp string ${empTypeString}`)
+    // console.log(`emp string ${empTypeString}`)
     const jobsDetailsApiUrl = `https://apis.ccbp.in/jobs?employment_type=${empTypeString}&minimum_package=${minimumPackage}&search=${searchInput}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -96,12 +96,12 @@ class Jobs extends Component {
     }
     const response = await fetch(jobsDetailsApiUrl, options)
     const jobsData = await response.json()
-    console.log(jobsData)
+    // console.log(jobsData)
     if (response.ok && jobsData.jobs.length > 0) {
       const formattedJobData = jobsData.jobs.map(eachJob =>
         this.getFormattedJobData(eachJob),
       )
-      console.log(formattedJobData)
+      // console.log(formattedJobData)
       this.setState({jobs: formattedJobData, jobsApi: apiConstants.success})
     } else if (response.ok && jobsData.jobs.length === 0) {
       this.setState({jobsApi: apiConstants.noJobsFound})
@@ -130,7 +130,7 @@ class Jobs extends Component {
     const response = await fetch(profileDetailsApiUrl, options)
     const profileData = await response.json()
     if (response.ok) {
-      console.log(profileData)
+      // console.log(profileData)
       const formattedData = this.getFormattedData(profileData.profile_details)
       this.setState({
         profileDetails: formattedData,
@@ -147,14 +147,17 @@ class Jobs extends Component {
 
   storeEmploymentType = e => {
     const {employmentType} = this.state
-    console.log(e.target.checked)
+    // console.log(e.target.checked)
     if (!employmentType.includes(e.target.value) && e.target.checked) {
-      this.setState({employmentType: [...employmentType, e.target.value]})
+      this.setState(
+        {employmentType: [...employmentType, e.target.value]},
+        this.getAllJobsDetails,
+      )
     } else if (!e.target.checked) {
       const targetIndex = employmentType.findIndex(
         eachItem => eachItem === e.target.value,
       )
-      console.log(`target index: ${targetIndex}`)
+      // console.log(`target index: ${targetIndex}`)
       if (targetIndex >= 0) {
         const employmentTypeCopy = [...employmentType]
         // const updatedEmploymentTypeIds = [
@@ -164,15 +167,18 @@ class Jobs extends Component {
         employmentTypeCopy.splice(targetIndex, 1)
         const updatedEmploymentTypeIds = [...employmentTypeCopy]
 
-        this.setState({
-          employmentType: updatedEmploymentTypeIds,
-        })
+        this.setState(
+          {
+            employmentType: updatedEmploymentTypeIds,
+          },
+          this.getAllJobsDetails,
+        )
       }
     }
   }
 
   storeSelectedRadioValue = e => {
-    this.setState({minimumPackage: e.target.value})
+    this.setState({minimumPackage: e.target.value}, this.getAllJobsDetails)
   }
 
   searchData = e => {
@@ -195,8 +201,10 @@ class Jobs extends Component {
   // testid="loader"
 
   profileLoadingView = () => (
-    <div className="profile-loader-container loader-container" testid="loader">
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    <div className="profile-loader-container">
+      <div className="loader-container" testid="loader">
+        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      </div>
     </div>
   )
 
@@ -231,11 +239,10 @@ class Jobs extends Component {
   }
 
   jobsLoadingView = () => (
-    <div
-      className="jobs-loading-view-container loader-container "
-      testid="loader"
-    >
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    <div className="jobs-loading-view-container">
+      <div className="loader-container " testid="loader">
+        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      </div>
     </div>
   )
 

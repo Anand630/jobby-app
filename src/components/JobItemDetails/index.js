@@ -66,7 +66,7 @@ class JobItemDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
-    console.log(id)
+    // console.log(id)
     const jobDetailsApiUrl = `https://apis.ccbp.in/jobs/${id}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -77,7 +77,7 @@ class JobItemDetails extends Component {
     }
     const response = await fetch(jobDetailsApiUrl, options)
     const jobDetailsData = await response.json()
-    console.log(jobDetailsData)
+    // console.log(jobDetailsData)
     if (response.ok) {
       const formattedJobDetails = this.getFormattedJobDetails(
         jobDetailsData.job_details,
@@ -96,8 +96,8 @@ class JobItemDetails extends Component {
         this.getFormattedSimilarJob(eachJob),
       )
 
-      console.log(formattedJobDetails)
-      console.log(formattedSimilarJobs)
+      // console.log(formattedJobDetails)
+      // console.log(formattedSimilarJobs)
 
       this.setState({
         jobDetails: {...formattedJobDetails},
@@ -113,11 +113,10 @@ class JobItemDetails extends Component {
 
   // testid="loader"
   getLoadingView = () => (
-    <div
-      className="job-item-details-loader-container loader-container"
-      testid="loader"
-    >
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    <div className="job-item-details-loader-container">
+      <div className="loader-container" testid="loader">
+        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      </div>
     </div>
   )
 

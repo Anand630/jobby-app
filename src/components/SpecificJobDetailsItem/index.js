@@ -20,7 +20,7 @@ const SpecificJobDetailsItem = props => {
     title,
   } = jobDetails
   const {description, imageUrl} = lifeAtCompanyDetails
-  console.log(props)
+  // console.log(props)
 
   return (
     <div className="specific-job-details-card">
@@ -55,10 +55,7 @@ const SpecificJobDetailsItem = props => {
       <div className="description-heading-visit-text-icon-container">
         <h3 className="specific-job-headings-text">Description</h3>
 
-        <a
-          href={companyWebsiteUrl}
-          className="visit-text visit-text-icon-container"
-        >
+        <a href={companyWebsiteUrl} className="visit-text-icon-container">
           Visit
           <FiExternalLink color="#6366f1" size={19} />
         </a>

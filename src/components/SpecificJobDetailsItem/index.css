@@ -102,14 +102,18 @@ hr {
   justify-content: space-between;
   align-items: center;
   width: 62px;
-}
-
-.visit-text {
   color: #6366f1;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
 }
+
+/* .visit-text {
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+} */
 
 @media (max-width: 767px) {
   .specific-job-headings-text {

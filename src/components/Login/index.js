@@ -38,7 +38,7 @@ class Login extends Component {
 
   render() {
     const {username, password, loginError, errorMessage} = this.state
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div className="login-page-container">
         <form className="login-form">

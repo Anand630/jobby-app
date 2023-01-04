@@ -181,8 +181,8 @@ class Jobs extends Component {
     this.setState({minimumPackage: e.target.value}, this.getAllJobsDetails)
   }
 
-  searchData = e => {
-    e.preventDefault()
+  searchData = () => {
+    // e.preventDefault()
     this.getAllJobsDetails()
   }
 
@@ -240,7 +240,7 @@ class Jobs extends Component {
 
   jobsLoadingView = () => (
     <div className="jobs-loading-view-container">
-      <div className="loader-container " testid="loader">
+      <div className="loader-container" testid="loader">
         <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
       </div>
     </div>
@@ -319,102 +319,133 @@ class Jobs extends Component {
     return (
       <div className="jobs-page-container">
         <Header />
+
         <div className="jobs-page-bottom-container">
-          <div className="profile-and-filters-container">
-            <form className="search-input-and-icon-container-mobile">
-              <input
-                className="search-input"
-                type="search"
-                placeholder="Search"
-                onChange={this.storeInputText}
-                value={searchInput}
-              />
-              <div className="search-icon-container">
-                <button
-                  className="search-icon-button"
-                  type="submit"
-                  onClick={this.searchData}
-                  testid="searchButton"
-                >
-                  <BsSearch size={18} color="#ffffff" className="search-icon" />
-                </button>
-              </div>
-            </form>
-            {this.displayProfileApiResult()}
-            <hr />
-            <h1 className="filter-type">Type of Employment</h1>
-            {/*   employment types    */}
-            <ul className="employment-types-list-container">
-              {employmentTypesList.map(eachType => (
-                <li
-                  className="checkbox-input-and-label-container"
-                  key={eachType.employmentTypeId}
-                >
-                  <input
-                    className="emp-type-checkbox"
-                    id={eachType.employmentTypeId}
-                    type="checkbox"
-                    value={eachType.employmentTypeId}
-                    onClick={this.storeEmploymentType}
-                  />
-                  <label
-                    className="emp-type-label"
-                    htmlFor={eachType.employmentTypeId}
-                  >
-                    {eachType.label}
-                  </label>
-                </li>
-              ))}
-            </ul>
-            <hr />
-            <h1 className="filter-type">Salary Range</h1>
-            {/*   salary ranges   */}
-            <ul className="salary-ranges-list-container">
-              {salaryRangesList.map(eachSalRange => (
-                <li
-                  className="radio-input-and-label-container"
-                  key={eachSalRange.salaryRangeId}
-                >
-                  <input
-                    className="salary-range-radio-input"
-                    id={eachSalRange.salaryRangeId}
-                    type="radio"
-                    name="salary-ranges"
-                    value={eachSalRange.salaryRangeId}
-                    onChange={this.storeSelectedRadioValue}
-                  />
-                  <label
-                    className="salary-range-label"
-                    htmlFor={eachSalRange.salaryRangeId}
-                  >
-                    {eachSalRange.label}
-                  </label>
-                </li>
-              ))}
-            </ul>
+          <div className="search-input-and-icon-container">
+            <input
+              className="search-input"
+              type="search"
+              placeholder="Search"
+              onChange={this.storeInputText}
+              value={searchInput}
+            />
+            <div className="search-icon-container">
+              <button
+                className="search-icon-button"
+                type="submit"
+                onClick={this.searchData}
+                testid="searchButton"
+              >
+                <BsSearch size={18} color="#ffffff" className="search-icon" />
+              </button>
+            </div>
           </div>
-          <div className="all-job-cards-container">
-            <form className="search-input-and-icon-container-desktop">
-              <input
-                className="search-input"
-                type="search"
-                placeholder="Search"
-                onChange={this.storeInputText}
-                value={searchInput}
-              />
-              <div className="search-icon-container">
-                <button
-                  onClick={this.searchData}
-                  className="search-icon-button"
-                  type="submit"
-                  testid="searchButton"
-                >
-                  <BsSearch size={18} color="#ffffff" className="search-icon" />
-                </button>
-              </div>
-            </form>
-            {/* JobDetailsItems   */}
-            {this.getJobApiResults()}
+
+          <div className="profile-filters-job-cards-container">
+            <div className="profile-and-filters-container">
+              {/* <form className="search-input-and-icon-container-mobile">
+                <input
+                  className="search-input"
+                  type="search"
+                  placeholder="Search"
+                  onChange={this.storeInputText}
+                  value={searchInput}
+                />
+                <div className="search-icon-container">
+                  <button
+                    className="search-icon-button"
+                    type="submit"
+                    onClick={this.searchData}
+                    // testid="searchButton"
+                  >
+                    <BsSearch
+                      size={18}
+                      color="#ffffff"
+                      className="search-icon"
+                    />
+                  </button>
+                </div>
+              </form> */}
+              {this.displayProfileApiResult()}
+              <hr />
+              <h3 className="filter-type">Type of Employment</h3>
+              {/*   employment types    */}
+              <ul className="employment-types-list-container">
+                {employmentTypesList.map(eachType => (
+                  <li
+                    className="checkbox-input-and-label-container"
+                    key={eachType.employmentTypeId}
+                  >
+                    <input
+                      className="emp-type-checkbox"
+                      id={eachType.employmentTypeId}
+                      type="checkbox"
+                      value={eachType.employmentTypeId}
+                      onClick={this.storeEmploymentType}
+                    />
+                    <label
+                      className="emp-type-label"
+                      htmlFor={eachType.employmentTypeId}
+                    >
+                      {eachType.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+              <hr />
+              <h3 className="filter-type">Salary Range</h3>
+              {/*   salary ranges   */}
+              <ul className="salary-ranges-list-container">
+                {salaryRangesList.map(eachSalRange => (
+                  <li
+                    className="radio-input-and-label-container"
+                    key={eachSalRange.salaryRangeId}
+                  >
+                    <input
+                      className="salary-range-radio-input"
+                      id={eachSalRange.salaryRangeId}
+                      type="radio"
+                      name="salary-ranges"
+                      value={eachSalRange.salaryRangeId}
+                      onChange={this.storeSelectedRadioValue}
+                    />
+                    <label
+                      className="salary-range-label"
+                      htmlFor={eachSalRange.salaryRangeId}
+                    >
+                      {eachSalRange.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="all-job-cards-container">
+              {/* <form className="search-input-and-icon-container-desktop">
+                <input
+                  className="search-input"
+                  type="search"
+                  placeholder="Search"
+                  onChange={this.storeInputText}
+                  value={searchInput}
+                />
+                <div className="search-icon-container">
+                  <button
+                    onClick={this.searchData}
+                    className="search-icon-button"
+                    type="submit"
+                    // testid="searchButton"
+                  >
+                    <BsSearch
+                      size={18}
+                      color="#ffffff"
+                      className="search-icon"
+                    />
+                  </button>
+                </div>
+              </form> */}
+              {/* JobDetailsItems   */}
+              {this.getJobApiResults()}
+            </div>
           </div>
         </div>
       </div>

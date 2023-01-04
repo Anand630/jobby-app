@@ -6,20 +6,27 @@
 .jobs-page-bottom-container {
   padding-top: 25px;
   padding-bottom: 25px;
-  display: flex;
+
   padding-left: 7.5%;
   padding-right: 7.5%;
 }
 
+.profile-filters-job-cards-container {
+  display: flex;
+}
+
 @media (max-width: 767px) {
   .jobs-page-bottom-container {
-    padding-top: 30px;
-    padding-bottom: 35px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .profile-filters-job-cards-container {
     display: flex;
     flex-direction: column;
-
-    padding-left: 7.5%;
-    padding-right: 7.5%;
   }
 
   .all-job-cards-container {
@@ -277,7 +284,23 @@ hr {
 }
 /*  */
 
-.search-input-and-icon-container-desktop {
+/* extra single search bar for all devices */
+.search-input-and-icon-container {
+  display: flex;
+  border: 1px solid #64748b;
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+
+@media (min-width: 768px) {
+  .search-input-and-icon-container {
+    width: 69%;
+    margin-left: auto;
+    margin-bottom: 0;
+  }
+}
+
+/* .search-input-and-icon-container-desktop {
   width: 400px;
   display: flex;
   border: 1px solid #64748b;
@@ -290,10 +313,10 @@ hr {
   border: 1px solid #64748b;
   border-radius: 4px;
   margin-bottom: 18px;
-}
+} */
 
 @media (max-width: 767px) {
-  .search-input-and-icon-container-desktop {
+  /* .search-input-and-icon-container-desktop {
     width: 400px;
     display: none;
     border: 1px solid #64748b;
@@ -306,7 +329,7 @@ hr {
     border: 1px solid #64748b;
     border-radius: 4px;
     margin-bottom: 18px;
-  }
+  } */
 }
 
 .search-input {

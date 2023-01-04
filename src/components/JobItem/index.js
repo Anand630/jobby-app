@@ -35,14 +35,14 @@ const JobItem = props => {
         </div>
         <div className="location-job-type-package-container">
           <div className="icon-and-text-container">
-            <MdLocationOn size={26} color="#ffffff" />
+            <MdLocationOn size={20} color="#ffffff" />
             <p className="job-location-emp-type-text">{location}</p>
           </div>
           <div className="icon-and-text-container">
-            <IoBriefcase size={26} color="#ffffff" />
+            <IoBriefcase size={20} color="#ffffff" />
             <p className="job-location-emp-type-text">{employmentType}</p>
           </div>
-          <h3 className="package-per-annum">{packagePerAnnum}</h3>
+          <h4 className="package-per-annum">{packagePerAnnum}</h4>
         </div>
         <hr />
         <h3 className="job-description-heading-text">Description</h3>

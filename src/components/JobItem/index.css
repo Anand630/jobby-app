@@ -62,11 +62,24 @@
   margin-left: 10px;
 }
 
+@media (max-width: 386px) {
+  .job-location-emp-type-text {
+    margin-left: 6px;
+    font-size: 14px;
+  }
+}
+
 .package-per-annum {
   color: #f8fafc;
   font-family: Roboto;
   font-weight: 500;
   margin-left: auto;
+}
+
+@media (max-width: 375px) {
+  .package-per-annum {
+    font-size: 14px;
+  }
 }
 
 hr {

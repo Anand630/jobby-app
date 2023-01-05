@@ -332,7 +332,7 @@ class Jobs extends Component {
             <div className="search-icon-container">
               <button
                 className="search-icon-button"
-                type="submit"
+                type="button"
                 onClick={this.searchData}
                 testid="searchButton"
               >

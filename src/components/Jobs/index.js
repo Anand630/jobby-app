@@ -142,7 +142,7 @@ class Jobs extends Component {
   }
 
   storeInputText = e => {
-    this.setState({searchInput: e.target.value})
+    this.setState({searchInput: e.target.value}, this.getAllJobsDetails)
   }
 
   storeEmploymentType = e => {
@@ -181,8 +181,8 @@ class Jobs extends Component {
     this.setState({minimumPackage: e.target.value}, this.getAllJobsDetails)
   }
 
-  searchData = () => {
-    // e.preventDefault()
+  searchData = e => {
+    e.preventDefault()
     this.getAllJobsDetails()
   }
 
@@ -202,7 +202,7 @@ class Jobs extends Component {
 
   profileLoadingView = () => (
     <div className="profile-loader-container">
-      <div className="loader-container" testid="loader">
+      <div className="loader-container" /* testid="loader" */>
         <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
       </div>
     </div>
@@ -240,7 +240,7 @@ class Jobs extends Component {
 
   jobsLoadingView = () => (
     <div className="jobs-loading-view-container">
-      <div className="loader-container" testid="loader">
+      <div className="loader-container" /* testid="loader" */>
         <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
       </div>
     </div>
@@ -321,7 +321,10 @@ class Jobs extends Component {
         <Header />
 
         <div className="jobs-page-bottom-container">
-          <div className="search-input-and-icon-container">
+          <form
+            onSubmit={this.searchData}
+            className="search-input-and-icon-container"
+          >
             <input
               className="search-input"
               type="search"
@@ -332,14 +335,13 @@ class Jobs extends Component {
             <div className="search-icon-container">
               <button
                 className="search-icon-button"
-                type="button"
-                onClick={this.searchData}
-                testid="searchButton"
+                type="submit"
+                // testid="searchButton"
               >
                 <BsSearch size={18} color="#ffffff" className="search-icon" />
               </button>
             </div>
-          </div>
+          </form>
 
           <div className="profile-filters-job-cards-container">
             <div className="profile-and-filters-container">

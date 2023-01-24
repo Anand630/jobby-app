@@ -114,7 +114,7 @@ class JobItemDetails extends Component {
   // testid="loader"
   getLoadingView = () => (
     <div className="job-item-details-loader-container">
-      <div className="loader-container" testid="loader">
+      <div className="loader-container" /* testid="loader" */>
         <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
       </div>
     </div>

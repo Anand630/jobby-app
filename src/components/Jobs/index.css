@@ -4,11 +4,7 @@
 }
 
 .jobs-page-bottom-container {
-  padding-top: 25px;
-  padding-bottom: 25px;
-
-  padding-left: 7.5%;
-  padding-right: 7.5%;
+  padding: 25px 7.5% 50px 7.5%;
 }
 
 .profile-filters-job-cards-container {
@@ -17,11 +13,7 @@
 
 @media (max-width: 767px) {
   .jobs-page-bottom-container {
-    padding-top: 25px;
-    padding-bottom: 25px;
-
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 25px 5% 50px 5%;
   }
 
   .profile-filters-job-cards-container {
@@ -49,12 +41,14 @@
 
 .profile-container {
   background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
-  background-size: cover;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 18px;
   padding-bottom: 5px;
-  border-radius: 20px;
+  border-radius: 0px;
   margin-bottom: 20px;
 }
 
@@ -244,6 +238,12 @@ hr {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+}
+
+@media (max-width: 767px) {
+  .no-jobs-view-container {
+    padding-top: 50px;
+  }
 }
 
 .no-jobs-image {

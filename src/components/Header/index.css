@@ -28,16 +28,16 @@
   color: #f8fafc;
   font-family: Roboto;
   margin-right: 15px;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .jobs-menu-desktop-option {
   color: #f8fafc;
   font-family: Roboto;
   margin-left: 15px;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .nav-link-item {
@@ -63,6 +63,15 @@
 .menu-options-and-logout-icon-container {
   display: none;
 }
+
+.home-icon {
+  color: #f8fafc;
+}
+
+.briefcase-icon {
+  color: #f8fafc;
+}
+
 .logout-button-mobile {
   padding: 0;
   background-color: transparent;
@@ -99,8 +108,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 130px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    width: 180px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+/* active tab class */
+
+@media (min-width: 768px) {
+  .active-tab {
+    background-color: #6366f199;
+    padding: 5px 10px;
+    border-radius: 6px;
+
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (max-width: 767px) {
+  .active-tab {
+    color: #6366f1;
   }
 }
